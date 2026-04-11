@@ -1,0 +1,24 @@
+---
+- name: Build and Push Docker Images
+  hosts: localhost
+  gather_facts: false
+  tasks:
+
+    - name: Clean up Docker to free space
+      command: docker system prune -af
+      ignore_errors: true
+
+    - name: Login to DockerHub
+      command: docker login -u "{{ lookup('env','DOCKERHUB_USER') }}" -p "{{ lookup('env','DOCKERHUB_PASS') }}"
+
+    - name: Build Backend
+      command: docker build -t "{{ lookup('env','DOCKERHUB_USER') }}/fullstack-backend:{{ lookup('env','BUILD_NUMBER') }}" ../backend
+
+    - name: Push Backend
+      command: docker push "{{ lookup('env','DOCKERHUB_USER') }}/fullstack-backend:{{ lookup('env','BUILD_NUMBER') }}"
+
+    - name: Build Frontend
+      command: docker build -t "{{ lookup('env','DOCKERHUB_USER') }}/fullstack-frontend:{{ lookup('env','BUILD_NUMBER') }}" ../frontend
+
+    - name: Push Frontend
+      command: docker push "{{ lookup('env','DOCKERHUB_USER') }}/fullstack-frontend:{{ lookup('env','BUILD_NUMBER') }}"

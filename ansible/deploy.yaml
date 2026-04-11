@@ -1,0 +1,51 @@
+---
+- name: Deploy Fullstack 
+  hosts: k8s-Master      
+  become: true 
+  gather_facts: false 
+  vars:
+    ns: fullstack
+    manifest_path: /home/ubuntu/fullstack-k8s-deployment/k8s
+    backend_image: "{{ lookup('env', 'BACKEND_IMAGE') }}"
+    frontend_image: "{{ lookup('env', 'FRONTEND_IMAGE') }}"
+    layers:  
+      - { dir: database     }    
+      - { dir: backend      }
+      - { dir: frontend     }
+      - { dir: ingress.yaml }
+    delete_targets: 
+      - { kind: Deployment, name: backend }
+      - { kind: Deployment, name: frontend }
+      - { kind: Service,    name: backend }
+      - { kind: Service,    name: frontend }
+      - { kind: Ingress,    name: fullstack-ingress }
+      - { kind: pod,        name: "-l app=backend" }
+      - { kind: pod,        name: "-l app=frontend" }
+
+  tasks: 
+    - name: Create namespace
+      command: kubectl apply -f {{ manifest_path }}/namespace.yaml
+
+    - name: Delete old resources
+      command: kubectl delete {{ item.kind }} {{ item.name }} -n {{ ns }} --ignore-not-found=true --force --grace-period=0
+      loop: "{{ delete_targets }}"
+
+    - name: Apply manifests 
+      command: kubectl apply -f {{ manifest_path }}/{{ item.dir }} -n {{ ns }}
+      loop: "{{ layers }}"
+
+    - name: Set images
+      command: kubectl set image deployment/{{ item.deploy }} {{ item.container }}={{ item.image }} -n {{ ns }}
+      loop:
+        - { deploy: backend,  container: backend,  image: "{{ backend_image }}"  }
+        - { deploy: frontend, container: frontend, image: "{{ frontend_image }}" }
+
+    - name: Wait for deployments to be ready
+      command: kubectl rollout status deployment/{{ item }} -n {{ ns }} --timeout=180s
+      loop:
+        - mysql
+        - backend
+        - frontend
+
+    - name: Wait for ingress to be ready
+      command: kubectl get ingress fullstack-ingress -n {{ ns }}
