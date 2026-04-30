@@ -5,8 +5,7 @@ A full-stack Customer Management System containerized with Docker and deployed o
 ## Stack
 
 **Frontend** — Angular, TypeScript, Nginx  
-**Backend** — Spring Boot
-
+**Backend** — Spring Boot 
 **Database** — MySQL  
 **Containerization** — Docker, DockerHub  
 **Orchestration** — Kubernetes, Nginx Ingress  
