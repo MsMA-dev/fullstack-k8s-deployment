@@ -35,7 +35,7 @@ Frontend and backend are built in parallel. The pipeline aborts if the SonarQube
 
 ## Kubernetes
 
-All resources run in the `fullstack` namespace on a 3-node AWS cluster. The frontend, backend, and MySQL containers were scheduled and started on worker01 with zero restarts. Nginx Ingress routes `/api/*` to the backend and `/*` to the frontend, with `fullstack.com` mapped to the cluster master's public IP via a local DNS override.
+All resources run in the `fullstack` namespace on a 2-node AWS cluster. The frontend, backend, and MySQL containers were scheduled and started on worker01 with zero restarts. Nginx Ingress routes `/api/*` to the backend and `/*` to the frontend, with `fullstack.com` mapped to the cluster master's public IP via a local DNS override.
 
 ---
 
