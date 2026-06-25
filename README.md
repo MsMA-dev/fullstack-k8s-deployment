@@ -8,7 +8,7 @@ A full-stack Customer Management System containerized with Docker and deployed o
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | Angular, TypeScript, Nginx |
+| **Frontend** | Angular, TypeScript |
 | **Backend** | Spring Boot |
 | **Database** | MySQL |
 | **Containerization** | Docker, DockerHub |
