@@ -129,5 +129,5 @@ The Kubernetes cluster is monitored in real time via Grafana, tracking CPU, memo
 ---
 
 
-**Maryam Alotaibi** · GTA DevOps Training Bootcamp · March 2026
+Maryam Alotaibi · GTA DevOps Training Bootcamp · March 2026
 
