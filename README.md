@@ -23,9 +23,6 @@ DevOps infrastructure for a Customer Management System — fully containerized, 
 
 ## Architecture
 
-> Add architecture diagram here — recommended tools: [draw.io](https://draw.io) or [Excalidraw](https://excalidraw.com)
->
-> Suggested flow: Jenkins → SonarQube → Nexus → DockerHub → Kubernetes → Prometheus / Grafana
 
 ---
 
@@ -135,5 +132,3 @@ The Kubernetes cluster is monitored in real time via Grafana, tracking CPU, memo
 
 **Maryam Alotaibi** · GTA DevOps Training Bootcamp · March 2026
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/your-profile)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?logo=github)](https://github.com/MsMA-dev)
