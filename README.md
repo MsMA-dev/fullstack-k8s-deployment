@@ -1,6 +1,6 @@
 # Full-Stack K8s Deployment — Production-Grade DevOps Infrastructure
 
-DevOps infrastructure for a Customer Management System — fully containerized, deployed on Kubernetes, and driven by an automated Jenkins CI/CD pipeline with quality gates, artifact management, and real-time observability.
+DevOps infrastructure for a Customer Management System, fully containerized, deployed on Kubernetes, and driven by an automated Jenkins CI/CD pipeline with quality gates, artifact management, and real-time observability.
 
 ---
 
@@ -24,6 +24,7 @@ DevOps infrastructure for a Customer Management System — fully containerized, 
 ## Architecture
 
 ![deployment-architecture](assets/deployment-architecture.png)
+
 ---
 
 ## Pipeline
@@ -46,25 +47,25 @@ All resources run in the `fullstack` namespace on a 2-node AWS cluster. The fron
 
 ## Engineering Decisions
 
-- **Persistent Storage** — MySQL is configured with a PersistentVolume and PersistentVolumeClaim to ensure data durability across pod restarts and rescheduling.
+- **Persistent Storage:** MySQL is configured with a PersistentVolume and PersistentVolumeClaim to ensure data durability across pod restarts and rescheduling.
 
-- **Secrets Management** — Kubernetes Secrets are used for all sensitive credentials including MySQL root password, database user, and backend DB connection, keeping them out of the codebase.
+- **Secrets Management:** Kubernetes Secrets are used for all sensitive credentials including MySQL root password, database user, and backend DB connection, keeping them out of the codebase.
 
-- **Parallel Execution** — Frontend and backend build and test stages run in parallel within the Jenkins pipeline, reducing total pipeline time.
+- **Parallel Execution:** Frontend and backend build and test stages run in parallel within the Jenkins pipeline, reducing total pipeline time.
 
-- **Quality Gate Enforcement** — SonarQube acts as a hard blocker in the pipeline. If either the frontend or backend fails the quality gate, the pipeline aborts immediately before any artifact is published or deployed.
+- **Quality Gate Enforcement:** SonarQube acts as a hard blocker in the pipeline. If either the frontend or backend fails the quality gate, the pipeline aborts immediately before any artifact is published or deployed.
 
-- **Image Visibility** — The frontend image is publicly available on DockerHub since it is served to end users. The backend image is kept private to prevent exposing application internals, dependency versions, and API structure that could be leveraged to identify vulnerabilities.
+- **Image Visibility:** The frontend image is publicly available on DockerHub since it is served to end users. The backend image is kept private to prevent exposing application internals, dependency versions, and API structure that could be leveraged to identify vulnerabilities.
 
-- **Namespace Isolation** — All workloads run inside a dedicated `fullstack` namespace, cleanly separated from system and monitoring namespaces on the same cluster.
+- **Namespace Isolation:** All workloads run inside a dedicated `fullstack` namespace, cleanly separated from system and monitoring namespaces on the same cluster.
 
-- **Traceable Deployments** — Docker images are tagged by Jenkins build number, making every deployment fully traceable and allowing precise rollback to any previous build.
+- **Traceable Deployments:** Docker images are tagged by Jenkins build number, making every deployment fully traceable and allowing precise rollback to any previous build.
 
-- **Pipeline Observability** — An automated HTML email report is sent after every pipeline run detailing the status of each stage, build duration, and logs on failure.
+- **Pipeline Observability:** An automated HTML email report is sent after every pipeline run detailing the status of each stage, build duration, and logs on failure.
 
-- **Separation of Concerns** — Ansible handles infrastructure automation separately from the Jenkinsfile, keeping pipeline logic clean and playbooks independently reusable.
+- **Separation of Concerns:** Ansible handles infrastructure automation separately from the Jenkinsfile, keeping pipeline logic clean and playbooks independently reusable.
 
-- **Automated Rollout Verification** — The deployment stage waits for Kubernetes rollout status before marking the pipeline as successful, ensuring the application is actually running before the pipeline completes.
+- **Automated Rollout Verification:** The deployment stage waits for Kubernetes rollout status before marking the pipeline as successful, ensuring the application is actually running before the pipeline completes.
 
 ---
 
@@ -82,7 +83,7 @@ All 8 pipeline stages completed successfully in under 6 minutes, with an automat
 
 ### Kubernetes
 
-All three pods — frontend, backend, and MySQL — are running with zero restarts across the cluster.
+All three pods (frontend, backend, and MySQL) are running with zero restarts across the cluster.
 
 ![k8s-pods](assets/k8s-pods.png)
 
@@ -128,6 +129,4 @@ The Kubernetes cluster is monitored in real time via Grafana, tracking CPU, memo
 
 ---
 
-
 Maryam Alotaibi · GTA DevOps Training Bootcamp · March 2026
-
