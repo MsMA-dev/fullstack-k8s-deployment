@@ -23,7 +23,7 @@ DevOps infrastructure for a Customer Management System — fully containerized, 
 
 ## Architecture
 
-![deployment-architecture](deployment-architecture.png)
+![deployment-architecture](assets/deployment-architecture.png)
 ---
 
 ## Pipeline
