@@ -1,6 +1,6 @@
-# fullstack-k8s-deployment
+# Full-Stack K8s Deployment — Production-Grade DevOps Infrastructure
 
-A full-stack Customer Management System containerized with Docker and deployed on Kubernetes through a fully automated CI/CD pipeline, with a focus on DevOps infrastructure, automation, and observability.
+DevOps infrastructure for a Customer Management System — fully containerized, deployed on Kubernetes, and driven by an automated Jenkins CI/CD pipeline with quality gates, artifact management, and real-time observability.
 
 ---
 
@@ -16,8 +16,16 @@ A full-stack Customer Management System containerized with Docker and deployed o
 | **CI/CD** | Jenkins |
 | **Automation** | Ansible |
 | **Code Quality** | SonarQube |
-| **Artifact Management** | Nexus |
+| **Artifact Registry** | Nexus |
 | **Monitoring** | Prometheus, Grafana |
+
+---
+
+## Architecture
+
+> Add architecture diagram here — recommended tools: [draw.io](https://draw.io) or [Excalidraw](https://excalidraw.com)
+>
+> Suggested flow: Jenkins → SonarQube → Nexus → DockerHub → Kubernetes → Prometheus / Grafana
 
 ---
 
@@ -39,7 +47,7 @@ All resources run in the `fullstack` namespace on a 2-node AWS cluster. The fron
 
 ---
 
-## Good Practices
+## Engineering Decisions
 
 - **Persistent Storage** — MySQL is configured with a PersistentVolume and PersistentVolumeClaim to ensure data durability across pod restarts and rescheduling.
 
@@ -65,7 +73,9 @@ All resources run in the `fullstack` namespace on a 2-node AWS cluster. The fron
 
 ## Results
 
-### All 8 pipeline stages completed successfully in under 6 minutes, with an automated HTML report delivered upon completion
+### Pipeline
+
+All 8 pipeline stages completed successfully in under 6 minutes, with an automated HTML report delivered upon completion.
 
 ![jenkins-pipeline](assets/jenkins-pipeline.png)
 
@@ -73,56 +83,57 @@ All resources run in the `fullstack` namespace on a 2-node AWS cluster. The fron
 
 ---
 
-### All three pods — frontend, backend, and MySQL — are running with zero restarts across the cluster
+### Kubernetes
+
+All three pods — frontend, backend, and MySQL — are running with zero restarts across the cluster.
 
 ![k8s-pods](assets/k8s-pods.png)
 
----
-
-### All three containers were successfully scheduled and started on worker01. The backend and frontend images were pulled from DockerHub in under 4 seconds, while the MySQL image was already cached on the node
+All three containers were successfully scheduled and started on worker01. The backend and frontend images were pulled from DockerHub in under 4 seconds, while the MySQL image was already cached on the node.
 
 ![k8s-containers](assets/k8s-containers.png)
 
 ---
 
-### The application is live and fully accessible through the Nginx Ingress, with the REST API serving data correctly
+### Application
+
+The application is live and fully accessible through the Nginx Ingress, with the REST API serving data correctly.
 
 ![app-frontend](assets/app-frontend.png)
 
 ![app-api](assets/app-api.png)
 
----
-
-### Customer records are correctly persisted in MySQL using a PersistentVolume
+Customer records are correctly persisted in MySQL using a PersistentVolume.
 
 ![mysql-db](assets/mysql-db.png)
 
 ---
 
-### Both projects passed the SonarQube quality gate with zero bugs and zero vulnerabilities
+### Observability & Artifacts
+
+Both projects passed the SonarQube quality gate with zero bugs and zero vulnerabilities.
 
 ![sonarqube](assets/sonarqube.png)
 
----
-
-### Docker images were successfully built and pushed to DockerHub
+Docker images were successfully built and pushed to DockerHub.
 
 ![dockerhub-images](assets/dockerhub-images.jpg)
 
----
-
-### Build artifacts are versioned and stored in Nexus, with the backend JAR and frontend TGZ published under the com.devops group
+Build artifacts are versioned and stored in Nexus, with the backend JAR and frontend TGZ published under the com.devops group.
 
 ![nexus-backend](assets/nexus-backend.png)
 
 ![nexus-frontend](assets/nexus-frontend.png)
 
----
-
-### The Kubernetes cluster is monitored in real time via Grafana, tracking CPU, memory, pod count, and namespace resource usage across all nodes
+The Kubernetes cluster is monitored in real time via Grafana, tracking CPU, memory, pod count, and namespace resource usage across all nodes.
 
 ![grafana](assets/grafana.png)
 
 ---
 
-*Maryam Alotaibi · GTA DevOps Training Bootcamp · March 2026*
+## Author
+
+**Maryam Alotaibi** · GTA DevOps Training Bootcamp · March 2026
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/your-profile)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?logo=github)](https://github.com/MsMA-dev)
