@@ -1,5 +1,4 @@
 # Full-Stack K8s Deployment — Production-Grade DevOps Infrastructure
----
 
 ## Stack
 
