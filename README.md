@@ -3,18 +3,16 @@
 
 ## Stack
 
-|---|---|
-| Layer | Technology |
-| **Frontend** | Angular, TypeScript |
-| **Backend** | Spring Boot |
-| **Database** | MySQL |
-| **Containerization** | Docker, DockerHub |
-| **Orchestration** | Kubernetes, Nginx Ingress |
-| **CI/CD** | Jenkins |
-| **Automation** | Ansible |
-| **Code Quality** | SonarQube |
-| **Artifact Registry** | Nexus |
-| **Monitoring** | Prometheus, Grafana |
+* **Frontend:** Angular, TypeScript
+* **Backend:** Spring Boot
+* **Database:** MySQL
+* **Containerization:** Docker, DockerHub
+* **Orchestration:** Kubernetes, Nginx Ingress
+* **CI/CD:** Jenkins
+* **Automation:** Ansible
+* **Code Quality:** SonarQube
+* **Artifact Registry:** Nexus
+* **Monitoring:** Prometheus, Grafana
 
 ---
 
