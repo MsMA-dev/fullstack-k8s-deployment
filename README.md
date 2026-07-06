@@ -1,12 +1,8 @@
 # Full-Stack K8s Deployment — Production-Grade DevOps Infrastructure
-
-DevOps infrastructure for a Customer Management System, fully containerized, deployed on Kubernetes, and driven by an automated Jenkins CI/CD pipeline with quality gates, artifact management, and real-time observability.
-
 ---
 
 ## Stack
 
-| Layer | Technology |
 |---|---|
 | **Frontend** | Angular, TypeScript |
 | **Backend** | Spring Boot |
