@@ -4,6 +4,7 @@
 ## Stack
 
 |---|---|
+| Layer | Technology |
 | **Frontend** | Angular, TypeScript |
 | **Backend** | Spring Boot |
 | **Database** | MySQL |
